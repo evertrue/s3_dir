@@ -17,11 +17,11 @@ provisioner:
   name: chef_solo
 
 platforms:
-- name: ubuntu-12.04
+- name: ubuntu-14.04
   driver_config:
-    image_id: ami-b66ca0de
+    image_id: ami-b21a65d8
     tags:
-      Name: travis-ci-default-ubuntu-1204
+      Name: travis-ci-default-ubuntu-1404
       Env: public
 
 suites:
