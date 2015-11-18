@@ -27,3 +27,7 @@ suites:
   run_list:
       - recipe[apt]
       - recipe[s3_dir_test::default]
+  attributes:
+    s3_dir:
+      aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+      aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
