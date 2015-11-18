@@ -51,13 +51,11 @@ module S3Lib
 
       # 'files' is not a proper array and sometimes mishandles 'select.'
       # This converts it.
-      arr = []
-      bucket_obj.files.each { |f| arr << f }
-      listing = arr.select do |o|
-        o.key =~ /^#{Regexp.escape(dir)}/ &&
-        o.key !~ %r{^#{Regexp.escape(dir)}/$}
+      listing = bucket_obj.files.all('prefix' => dir).map do |o|
+        o.key.sub(/^#{Regexp.escape(dir)}\//, '')
       end
-      listing.map { |o| o.key.sub(%r{^#{Regexp.escape(dir)}/}, '/') }
+
+      listing.reject(&:empty?)
     end
 
     private
