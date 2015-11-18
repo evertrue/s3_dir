@@ -32,8 +32,8 @@ module S3Lib
     end
 
     def build_mock_env(bucket, dir)
-      dir.sub!(/\/$/, '')
-      dir.sub!(/^\//, '')
+      dir.sub!(%r{/$}, '')
+      dir.sub!(%r{^/}, '')
 
       d = connection.directories.create(
         key: bucket,
@@ -43,8 +43,8 @@ module S3Lib
     end
 
     def ls(bucket, dir)
-      dir.sub!(/\/$/, '')
-      dir.sub!(/^\//, '')
+      dir.sub!(%r{/$}, '')
+      dir.sub!(%r{^/}, '')
 
       bucket_obj = connection.directories.get(bucket)
       fail "Bucket #{bucket} not found." if bucket_obj.nil?
@@ -55,9 +55,9 @@ module S3Lib
       bucket_obj.files.each { |f| arr << f }
       listing = arr.select do |o|
         o.key =~ /^#{Regexp.escape(dir)}/ &&
-          o.key !~ /^#{Regexp.escape(dir)}\/$/
+        o.key !~ %r{^#{Regexp.escape(dir)}/$}
       end
-      listing.map { |o| o.key.sub(/^#{Regexp.escape(dir)}\//, '/') }
+      listing.map { |o| o.key.sub(%r{^#{Regexp.escape(dir)}/}, '/') }
     end
 
     private
