@@ -1,7 +1,6 @@
 ---
 driver:
   name: vagrant
-  require_chef_omnibus: true
   customize:
     cpus: 4
     memory: 1536
