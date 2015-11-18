@@ -1,23 +1,12 @@
 require 'spec_helper'
 
 describe 'S3 Dir test' do
-  describe file '/tmp/provisioning' do
+  describe file '/tmp/s3_dir_test/subdir/d1/d2/d3/d4' do
     it { should be_directory }
     it { should be_mode 775 }
   end
 
-  describe file '/tmp/provisioning/testdir' do
-    it { should be_directory }
-    it { should be_mode 775 }
-  end
-
-  describe file '/tmp/provisioning-us-west-1' do
-    it { should be_directory }
-    it { should be_mode 775 }
-  end
-
-  describe file '/tmp/provisioning-us-west-1/testdir' do
-    it { should be_directory }
-    it { should be_mode 775 }
+  describe file '/tmp/s3_dir_test/subdir/d1/d2/d3/d4/file' do
+    it { should be_file }
   end
 end
