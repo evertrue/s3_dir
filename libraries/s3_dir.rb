@@ -32,8 +32,8 @@ module S3Lib
     end
 
     def build_mock_env(bucket, dir)
-      dir.sub!(/\/$/, '')
-      dir.sub!(/^\//, '')
+      dir.sub!(%r{/$}, '')
+      dir.sub!(%r{^/}, '')
 
       d = connection.directories.create(
         key: bucket,
@@ -43,8 +43,8 @@ module S3Lib
     end
 
     def ls(bucket, dir)
-      dir.sub!(/\/$/, '')
-      dir.sub!(/^\//, '')
+      dir.sub!(%r{/$}, '')
+      dir.sub!(%r{^/}, '')
 
       bucket_obj = connection.directories.get(bucket)
       fail "Bucket #{bucket} not found." if bucket_obj.nil?

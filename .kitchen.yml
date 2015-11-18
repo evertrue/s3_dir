@@ -1,15 +1,15 @@
 ---
 driver:
   name: vagrant
-  require_chef_omnibus: true
   customize:
     cpus: 4
     memory: 1536
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
+  - name: ubuntu-12.04
   - name: ubuntu-14.04
 
 suites:
