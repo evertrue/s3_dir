@@ -5,7 +5,7 @@ sudo: false
 cache:
   directories:
   - vendor/bundle
-  - ~/.berkshelf
+  - "~/.berkshelf"
 before_install:
 - echo -n $EC2_KEY_CHUNK_{0..30} >> ~/.ssh/travis_ci_ec2.base64
 - cat ~/.ssh/travis_ci_ec2.base64 | tr -d ' ' | base64 --decode > ~/.ssh/travis_ci_ec2.pem
@@ -28,7 +28,7 @@ after_script:
 - bundle exec rake integration:cloud_destroy
 notifications:
   slack:
-    secure: N2Jmz2nONP/+cJDTdyjKtXhNqUK95AYAMpBg/J5LzjRzor05Wp0jv/Gl24JmQ1l+LjOgTfb+rgkdsITXURtswbFChlWHz2SPfD8Q3bDt97KOk3yZ55TKm8HKNzXcnCI1wyLYaUqZiubpnIFfCax36/IK07j7CmBN6AEs+wSIPro=
+    secure: k15JvCtvYkGzxnmlVszd51RdPFmZxxnFNAN5wj6gRd4HUERTwmdZrOcIS21g1cp/cjO1VZZDz6DuVswvJEKQLwBE3Eb5kvbt+nxkHx4JjBLzwjWkz4i0gn16c3WEVeJKXrkMALHmpzkj8wNQCwoAeKs2CSXTcRGnzIVNBB7aKb0=
 env:
   global:
   - secure: ZJ4Bf3NSznUtBwO3EOgjVf1O9sXbwxYJCyoBUOxhY9kEjX6yRABswbRgfJYqOQ4LjMzz10erFTgSRVsiViTwW4BQocN/4fPJ3lBDEtbPGVINZA3kXhRG/2NEymyu5nO/24aZByFsnCKKD9eCuOxtvhyITp9kqHL0L9+ARMggky4=
