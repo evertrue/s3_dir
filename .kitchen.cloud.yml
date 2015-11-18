@@ -18,7 +18,7 @@ provisioner:
 platforms:
 - name: ubuntu-12.04
   driver_config:
-    image_id: ami-b66ca0de
+    image_id: ami-190e4b73
     tags:
       Name: s3_dir-default-ubuntu-1204
 
