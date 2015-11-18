@@ -19,3 +19,6 @@ CyclomaticComplexity:
 # Advantageous for readability to line up attributes
 SingleSpaceBeforeFirstArg:
   Enabled: false
+
+AbcSize:
+  Enabled: false
