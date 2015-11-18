@@ -8,6 +8,9 @@ driver:
   security_group_ids: ['ci-testing']
   instance_type: c3.large
   interface: public
+  tags:
+    Env: public
+    Type: test
 
 provisioner:
   name: chef_solo
@@ -17,8 +20,7 @@ platforms:
   driver_config:
     image_id: ami-b66ca0de
     tags:
-      Name: travis-ci-default-ubuntu-1204
-      Env: public
+      Name: s3_dir-default-ubuntu-1204
 
 suites:
 - name: default
