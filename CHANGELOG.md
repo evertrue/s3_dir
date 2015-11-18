@@ -1,6 +1,14 @@
 s3_dir CHANGELOG
 ================
 
+v1.4.2 (2015-11-18)
+-------------------
+
+* Fix recursive directory creation (h/t to @alex-pekurovsky & @eherot)
+* Update the testing harnesses to bring it more up-to-date
+* Update gems
+* Better caching of Travis testing resources
+
 v1.4.1 (2014-10-21)
 -------------------
 
