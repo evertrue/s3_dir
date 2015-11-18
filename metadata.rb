@@ -11,5 +11,5 @@ issues_url 'https://github.com/evertrue/s3_dir/issues' if respond_to?(:issues_ur
 
 supports 'ubuntu', '= 14.04'
 
-depends 's3_file', '>= 2.5.0'
+depends 's3_file', '~> 2.5'
 depends 'et_fog',  '~> 1.0'
