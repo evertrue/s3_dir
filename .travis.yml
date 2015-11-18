@@ -2,6 +2,9 @@ language: ruby
 rvm:
 - 2.2
 sudo: false
+cache:
+  directories:
+  - vendor/bundle
 before_install:
 - echo -n $EC2_KEY_CHUNK_{0..30} >> ~/.ssh/travis_ci_ec2.base64
 - cat ~/.ssh/travis_ci_ec2.base64 | tr -d ' ' | base64 --decode > ~/.ssh/travis_ci_ec2.pem
@@ -16,7 +19,7 @@ before_install:
 - chmod 600 ~/.chef/knife.rb ~/.chef/trubot.pem
 - chmod 600 ~/.ssh/travis_ci_ec2.pem ~/.ssh/id_rsa
 install:
-- bundle install --without vagrant
+- bundle install --without vagrant --deployment --jobs=3 --retry=3
 - bundle exec berks install
 script:
 - bundle exec rake travis
