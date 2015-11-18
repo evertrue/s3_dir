@@ -25,13 +25,14 @@ action :create do
     new_resource.bucket,
     new_resource.dir
   ).each do |filename|
-    if filename[-1] == '/'
-      directory "#{new_resource.name}#{filename}" do
-        owner     new_resource.owner
-        group     new_resource.group
-        mode      S3Lib::Dir.dir_mode new_resource.mode
-      end
-    else
+    dir_path = filename.split("/")[0..-2].join("/")
+    directory "#{new_resource.name}#{dir_path}" do
+      owner     new_resource.owner
+      group     new_resource.group
+      mode      S3Lib::Dir.dir_mode new_resource.mode
+      recursive new_resource.recursive
+    end
+    if filename[-1] != '/'
       s3_file "#{new_resource.name}#{filename}" do
         remote_path "#{new_resource.dir}#{filename}"
         bucket new_resource.bucket
