@@ -16,11 +16,6 @@ provisioner:
   name: chef_zero
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    image_id: ami-190e4b73
-    tags:
-      Name: s3_dir-default-ubuntu-1204
 - name: ubuntu-14.04
   driver_config:
     image_id: ami-9883c6f2
