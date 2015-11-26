@@ -9,10 +9,6 @@ module S3Lib
       else
         mode = mode.to_s(8)
       end
-
-      (-3..-1).each do |i|
-        mode[i] = (mode[i].to_i + 1).to_s if !mode[i].to_i.zero? && mode.to_i.even?
-      end
       mode
     end
 
@@ -22,7 +18,7 @@ module S3Lib
       "https://s3-#{@region}.amazonaws.com"
     end
 
-    def initialize(access_key_id, secret_access_key, region, is_mock)
+    def initialize(access_key_id=nil, secret_access_key=nil, region=nil, is_mock=nil)
       require 'uri'
 
       @access_key_id = access_key_id
@@ -66,17 +62,24 @@ module S3Lib
 
         Fog.mock! if @is_mock
 
-        options = { aws_access_key_id: @access_key_id,
-                    aws_secret_access_key: @secret_access_key,
-                    region: @region,
-                    path_style: true }
+        options = {region: @region,
+                   path_style: true
+                  }
+
+        if @access_key_id.nil?
+          options = options.merge({use_iam_profile: true})
+        else
+          options = options.merge({ aws_access_key_id: @access_key_id,
+                                    aws_secret_access_key: @secret_access_key
+                                  })
+        end
 
         [
           :host,
           :port,
           :scheme
         ].map { |key| options[key] = URI(s3_url).send(key) } if @is_mock
-
+        
         Fog::Storage::AWS.new(options)
       end
     end

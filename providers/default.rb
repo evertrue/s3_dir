@@ -32,7 +32,7 @@ action :create do
   directories = remote_dir_contents.map do |f|
     f[-1] == '/' ? f.sub(%r{/$}, '') : ::File.dirname(f)
   end.uniq
-
+  
   directories.each do |dir|
     Chef::Log.debug "Processing directory: #{dir}"
     directory "#{new_resource.name}/#{dir}" do
@@ -49,8 +49,8 @@ action :create do
     s3_file "#{new_resource.name}/#{filename}" do
       remote_path "#{new_resource.dir}/#{filename}"
       bucket new_resource.bucket
-      aws_access_key_id new_resource.access_key_id
-      aws_secret_access_key new_resource.secret_access_key
+      aws_access_key_id new_resource.access_key_id unless new_resource.access_key_id.nil?
+      aws_secret_access_key new_resource.secret_access_key unless new_resource.secret_access_key.nil?
       owner new_resource.owner
       group new_resource.group
       mode new_resource.mode
