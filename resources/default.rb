@@ -7,8 +7,8 @@ property :mode,              [String, Integer],         default: '0775'
 property :bucket,            String
 property :dir,               String,                    default: '/'
 property :recursive,         [TrueClass, FalseClass],   default: false
-property :access_key_id,     String
-property :secret_access_key, String
+property :access_key_id,     [String, NilClass],        default: nil
+property :secret_access_key, [String, NilClass],        default: nil
 property :mock,              [TrueClass, FalseClass],   default: false
 property :region,            String,                    default: 'us-east-1'
 
@@ -63,8 +63,8 @@ action :create do
     s3_file "#{new_resource.name}/#{filename}" do
       remote_path "#{new_resource.dir}/#{filename}"
       bucket new_resource.bucket
-      aws_access_key_id new_resource.access_key_id
-      aws_secret_access_key new_resource.secret_access_key
+      aws_access_key_id new_resource.access_key_id unless new_resource.access_key_id.nil?
+      aws_secret_access_key new_resource.secret_access_key unless new_resource.secret_access_key.nil?
       owner new_resource.owner
       group new_resource.group
       mode new_resource.mode

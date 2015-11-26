@@ -22,7 +22,7 @@ module S3Lib
       "https://s3-#{@region}.amazonaws.com"
     end
 
-    def initialize(access_key_id, secret_access_key, region, is_mock)
+    def initialize(access_key_id = nil, secret_access_key = nil, region = nil, is_mock = nil)
       require 'uri'
 
       @access_key_id = access_key_id
@@ -66,10 +66,16 @@ module S3Lib
 
         Fog.mock! if @is_mock
 
-        options = { aws_access_key_id: @access_key_id,
-                    aws_secret_access_key: @secret_access_key,
-                    region: @region,
-                    path_style: true }
+        options = { region: @region,
+                    path_style: true,
+                  }
+
+        options = if @access_key_id.nil?
+                    options.merge(use_iam_profile: true)
+                  else
+                    options.merge(aws_access_key_id: @access_key_id,
+                                  aws_secret_access_key: @secret_access_key)
+                  end
 
         [
           :host,
