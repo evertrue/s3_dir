@@ -16,4 +16,4 @@ supports 'ubuntu', '= 16.04'
 
 depends 'compat_resource'
 depends 's3_file', '~> 2.5'
-depends 'et_fog',  '~> 1.0'
+depends 'et_fog',  '~> 4.0'
