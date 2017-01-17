@@ -2,9 +2,14 @@ language: ruby
 rvm:
 - 2.2
 sudo: false
+addons:
+  apt:
+    sources:
+    - chef-stable-precise
+    packages:
+    - chefdk
 cache:
   directories:
-  - vendor/bundle
   - "~/.berkshelf"
 before_install:
 - echo -n $EC2_KEY_CHUNK_{0..30} >> ~/.ssh/travis_ci_ec2.base64
@@ -19,17 +24,24 @@ before_install:
 - echo 'chef_server_url "https://api.opscode.com/organizations/evertrue"' >> ~/.chef/knife.rb
 - chmod 600 ~/.chef/knife.rb ~/.chef/trubot.pem
 - chmod 600 ~/.ssh/travis_ci_ec2.pem ~/.ssh/id_rsa
+- chef --version
+- eval "$(chef shell-init bash)"
+- cookstyle --version
+- foodcritic --version
+- kitchen --version
 install:
-- bundle install --without vagrant --deployment --jobs=3 --retry=3
-- bundle exec berks install
-script:
-- bundle exec rake travis
-after_script:
-- bundle exec rake integration:cloud_destroy
+- chef gem install kitchen-sync
+- berks
+script: "$TEST"
 notifications:
   slack:
     secure: k15JvCtvYkGzxnmlVszd51RdPFmZxxnFNAN5wj6gRd4HUERTwmdZrOcIS21g1cp/cjO1VZZDz6DuVswvJEKQLwBE3Eb5kvbt+nxkHx4JjBLzwjWkz4i0gn16c3WEVeJKXrkMALHmpzkj8wNQCwoAeKs2CSXTcRGnzIVNBB7aKb0=
 env:
+  matrix:
+  - TEST=cookstyle
+  - TEST="foodcritic ."
+  - TEST="chef exec rspec"
+  - TEST="kitchen test -d always"
   global:
   - secure: ZJ4Bf3NSznUtBwO3EOgjVf1O9sXbwxYJCyoBUOxhY9kEjX6yRABswbRgfJYqOQ4LjMzz10erFTgSRVsiViTwW4BQocN/4fPJ3lBDEtbPGVINZA3kXhRG/2NEymyu5nO/24aZByFsnCKKD9eCuOxtvhyITp9kqHL0L9+ARMggky4=
   - secure: J0IPKZ38XYClVP67sp/EfVXeIrD+Q6KqIHx2MQM7saihNbOFkZnS8rWF4RNx3kSmpjFZlZCn81yvEQLA3KtILXk0eaG9Sd2929/GPTJgErRX10KlHzGLVidDk9+bGt+lqt8VBTdXVdblqp/8pnMSqjFz9Vl+98qDzc1uKt9bh0M=
