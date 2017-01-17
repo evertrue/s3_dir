@@ -1,4 +1,8 @@
-include_recipe 's3_dir::default'
+apt_update 'apt' do
+  action :update
+end
+
+include_recipe 'et_fog::default'
 
 s3_dir '/tmp/s3_dir_test' do
   bucket 's3dir-test-bucket'

@@ -25,7 +25,6 @@ platforms:
 suites:
 - name: default
   run_list:
-      - recipe[apt]
       - recipe[s3_dir_test::default]
   attributes:
     s3_dir:
