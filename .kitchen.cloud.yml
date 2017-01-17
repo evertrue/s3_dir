@@ -18,9 +18,12 @@ provisioner:
 platforms:
 - name: ubuntu-14.04
   driver_config:
-    image_id: ami-9883c6f2
     tags:
-      Name: s3_dir-default-ubuntu-1404
+      Name: s3-dir-default-ubuntu-1404
+- name: ubuntu-16.04
+  driver_config:
+    tags:
+      Name: s3-dir-default-ubuntu-1604
 
 suites:
 - name: default
