@@ -74,7 +74,7 @@ module S3Lib
         [
           :host,
           :port,
-          :scheme
+          :scheme,
         ].map { |key| options[key] = URI(s3_url).send(key) } if @is_mock
 
         Fog::Storage::AWS.new(options)
