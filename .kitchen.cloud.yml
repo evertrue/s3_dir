@@ -5,7 +5,8 @@ driver:
   ssh_key: <%= ENV['EC2_SSH_KEY_PATH'] %>
   region: us-east-1
   availability_zone: us-east-1b
-  security_group_ids: ['ci-testing']
+  security_group_ids:
+  - ci-testing
   instance_type: c3.large
   interface: public
   tags:
@@ -28,7 +29,7 @@ platforms:
 suites:
 - name: default
   run_list:
-      - recipe[s3_dir_test::default]
+  - recipe[s3_dir_test::default]
   attributes:
     s3_dir:
       aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
