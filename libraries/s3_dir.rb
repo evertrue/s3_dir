@@ -10,9 +10,6 @@ module S3Lib
         mode = mode.to_s(8)
       end
 
-      (-3..-1).each do |i|
-        mode[i] = (mode[i].to_i + 1).to_s if !mode[i].to_i.zero? && mode.to_i.even?
-      end
       mode
     end
 
