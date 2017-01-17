@@ -47,7 +47,7 @@ module S3Lib
       dir.sub!(%r{^/}, '')
 
       bucket_obj = connection.directories.get(bucket)
-      fail "Bucket #{bucket} not found." if bucket_obj.nil?
+      raise "Bucket #{bucket} not found." if bucket_obj.nil?
 
       # 'files' is not a proper array and sometimes mishandles 'select.'
       # This converts it.
