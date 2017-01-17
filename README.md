@@ -76,6 +76,7 @@ However it is recommended that you request a more permissive set of permissions 
 2. Create a named feature branch (i.e. `add-new-recipe`)
 3. Write your change
 4. Write tests for your change (if applicable)
+    * You will need to `chef gem install coveralls kitchen-sync` to run ChefSpec & Test Kitchen against this cookbook
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request
 
