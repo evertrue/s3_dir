@@ -30,7 +30,7 @@ before_install:
 - foodcritic --version
 - kitchen --version
 install:
-- chef gem install kitchen-sync
+- chef gem install kitchen-sync coveralls
 - berks
 script: "$TEST"
 notifications:
