@@ -43,6 +43,7 @@ env:
   - TEST="chef exec rspec"
   - TEST="kitchen test -d always"
   global:
+  - KITCHEN_YAML=.kitchen.cloud.yml
   - secure: ZJ4Bf3NSznUtBwO3EOgjVf1O9sXbwxYJCyoBUOxhY9kEjX6yRABswbRgfJYqOQ4LjMzz10erFTgSRVsiViTwW4BQocN/4fPJ3lBDEtbPGVINZA3kXhRG/2NEymyu5nO/24aZByFsnCKKD9eCuOxtvhyITp9kqHL0L9+ARMggky4=
   - secure: J0IPKZ38XYClVP67sp/EfVXeIrD+Q6KqIHx2MQM7saihNbOFkZnS8rWF4RNx3kSmpjFZlZCn81yvEQLA3KtILXk0eaG9Sd2929/GPTJgErRX10KlHzGLVidDk9+bGt+lqt8VBTdXVdblqp/8pnMSqjFz9Vl+98qDzc1uKt9bh0M=
   - secure: GvhqSJRU2G0j0m96wUrA+4JIkLcn6PVVmedey0U0T+sZdXB65JVZPTMhfKaeXuKHma21mbM0mzRpMMf+7kJWShtxNQy9r8jA/sjqS66yVo5c7bgF1YNg68X5ByR2MkGibBrUfCUXVeY4BpxOSbC1ZXLi7w9FynDkX2SpmlP1hTw=
