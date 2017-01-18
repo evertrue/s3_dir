@@ -41,7 +41,8 @@ env:
   - TEST=cookstyle
   - TEST="foodcritic ."
   - TEST="chef exec rspec"
-  - TEST="kitchen test -d always"
+  - TEST="kitchen test ubuntu-14.04 -d always"
+  - TEST="kitchen test ubuntu-16.04 -d always"
   global:
   - KITCHEN_YAML=.kitchen.cloud.yml
   - secure: ZJ4Bf3NSznUtBwO3EOgjVf1O9sXbwxYJCyoBUOxhY9kEjX6yRABswbRgfJYqOQ4LjMzz10erFTgSRVsiViTwW4BQocN/4fPJ3lBDEtbPGVINZA3kXhRG/2NEymyu5nO/24aZByFsnCKKD9eCuOxtvhyITp9kqHL0L9+ARMggky4=
