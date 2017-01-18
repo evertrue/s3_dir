@@ -1,6 +1,16 @@
 s3_dir CHANGELOG
 ================
 
+v2.0.0 (2017-01-18)
+-------------------
+
+* Update dependencies to resolve dephell w/ `et_fog`
+* Refactor LWRP → Chef 12.5 Custom Resource w/ backwards compat to Chef ~> 12.1
+* Add ability to use an IAM profile (#6, @mlakewood)
+* Remove file mode changing due to potential for illegal modes and all files being made executable (#6, @mlakewood)
+* Update Travis testing to use ChefDK & add Ubuntu 16.04
+* Clean up ChefSpec & integration testing
+
 v1.4.2 (2015-11-18)
 -------------------
 
